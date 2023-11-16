@@ -15,13 +15,55 @@ public class Java_Extra_005 {
         Scanner leer = new Scanner(System.in);
         Empleado empleado = new Empleado();
         System.out.println("Ingrese nombre del empleado: ");
-        empleado.setNombre(leer.nextLine());
+        empleado.setNombre(Nombre());
         System.out.println("Ingrese edad del empleado: ");
-        empleado.setEdad(leer.nextInt());
+        empleado.setEdad(Comprobar());
         System.out.println("Ingrese salario del empleado: ");
-        empleado.setSalario(leer.nextDouble());
+        empleado.setSalario(Salario());
         System.out.println("Datos 'to.String': " + empleado.toString());
         empleado= empleado.CalcularAumento(empleado);
         System.out.println("Datos 'to.String': " + empleado.toString());
     }   
+    public static int Comprobar(){
+        Scanner leer = new Scanner(System.in);
+        int aux= leer.nextInt();
+        while (aux<18) {
+            System.out.println("Error. Ingrese un dato válido. El empleado debe ser mayor de 18 años: ");
+            aux=leer.nextInt();
+        }
+        return aux;
+    }
+    public static double Salario(){
+        Scanner leer = new Scanner(System.in);
+        double aux= leer.nextDouble();
+        while (aux<=0) {
+            System.out.println("Error. Ingrese un dato válido: ");
+            aux=leer.nextDouble();
+        }
+        return aux;
+    }
+    public static String Nombre() {
+        Scanner leer = new Scanner(System.in);
+        String nombre = leer.nextLine();
+        boolean aux = false;
+        while (aux == false) {
+            boolean var = false;
+            for (int i = 0; i < nombre.length(); i++) {
+                if (!nombre.substring(i, i + 1).equals(" ")) {
+                    var = true; // Si hay al menos una letra devuelve 'true'
+                }
+            }
+            if (var == false) {
+                System.out.println("Error. Ingrese un nombre válido");
+                nombre = leer.nextLine();
+            } else if (nombre.isEmpty()) {
+                System.out.println("Error. Ingrese un nombre válido");
+                nombre = leer.nextLine();
+            } else {
+                System.out.println("Válido. Nombre: " + nombre);
+                aux= true; // Rompemos el bucle principal
+            }
+        }
+        return nombre;
+    }
 }

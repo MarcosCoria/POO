@@ -19,12 +19,27 @@ public class Java_Extra_001 {
         tema.setAutor(Nombre());
         System.out.println(tema.toString());
     }   
-    public static String Nombre(){
+    public static String Nombre() {
         Scanner leer = new Scanner(System.in);
-        String nombre= leer.nextLine();
-        while (nombre.equals("") || nombre.equals(" ")) {
-            System.out.println("Error. Ingrese otro nombre válido: ");
-            nombre= leer.nextLine();
+        String nombre = leer.nextLine();
+        boolean aux = false;
+        while (aux == false) {
+            boolean var = false;
+            for (int i = 0; i < nombre.length(); i++) {
+                if (!nombre.substring(i, i + 1).equals(" ")) {
+                    var = true; // Si hay al menos una letra devuelve 'true'
+                }
+            }
+            if (var == false) {
+                System.out.println("Error. Ingrese un nombre válido");
+                nombre = leer.nextLine();
+            } else if (nombre.isEmpty()) {
+                System.out.println("Error. Ingrese un nombre válido");
+                nombre = leer.nextLine();
+            } else {
+                System.out.println("Válido. Nombre: " + nombre);
+                aux= true; // Rompemos el bucle principal
+            }
         }
         return nombre;
     }

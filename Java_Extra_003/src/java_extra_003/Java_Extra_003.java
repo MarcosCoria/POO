@@ -13,8 +13,9 @@ import java.util.Scanner;
 
 /* @author G96xyFast */
 public class Java_Extra_003 {
+
     public static void main(String[] args) {
-        Juego juego= new Juego();
+        Juego juego = new Juego();
         System.out.println("Ingrese cantidad de juegos a disputar: ");
         juego.setTotal(Validar());
         System.out.println("Ingrese la cantidad de intentos por juego: ");
@@ -25,22 +26,39 @@ public class Java_Extra_003 {
         juego.setJugador2(Nombre());
         System.out.println("");
         juego.IniciarJuego(juego);
-    }   
-    public static int Validar(){
+    }
+
+    public static int Validar() {
         Scanner leer = new Scanner(System.in);
-        int num= leer.nextInt();
-        while (num<=0) {
+        int num = leer.nextInt();
+        while (num <= 0) {
             System.out.println("Error. Ingrese un número válido: ");
-            num= leer.nextInt();
+            num = leer.nextInt();
         }
         return num;
     }
-    public static String Nombre(){
+
+    public static String Nombre() {
         Scanner leer = new Scanner(System.in);
-        String nombre= leer.nextLine();
-        while (nombre.equals("") || nombre.equals(" ")) {
-            System.out.println("Error. Ingrese un nombre válido: ");
-            nombre= leer.nextLine();
+        String nombre = leer.nextLine();
+        boolean aux = false;
+        while (aux == false) {
+            boolean var = false;
+            for (int i = 0; i < nombre.length(); i++) {
+                if (!nombre.substring(i, i + 1).equals(" ")) {
+                    var = true; // Si hay al menos una letra devuelve 'true'
+                }
+            }
+            if (var == false) {
+                System.out.println("Error. Ingrese un nombre válido");
+                nombre = leer.nextLine();
+            } else if (nombre.isEmpty()) {
+                System.out.println("Error. Ingrese un nombre válido");
+                nombre = leer.nextLine();
+            } else {
+                System.out.println("Válido. Nombre: " + nombre);
+                aux= true; // Rompemos el bucle principal
+            }
         }
         return nombre;
     }

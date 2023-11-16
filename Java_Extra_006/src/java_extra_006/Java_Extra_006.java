@@ -14,9 +14,18 @@ public class Java_Extra_006 {
         Scanner leer = new Scanner(System.in);
         Rectangulo rec= new Rectangulo();
         System.out.println("Ingrese base del rectángulo: ");
-        rec.setLado1(leer.nextDouble());
+        rec.setLado1(Comprobar());
         System.out.println("Ingrese altura del rectángulo: ");
-        rec.setLado2(leer.nextDouble());
+        rec.setLado2(Comprobar());
         rec.CalcularArea(rec);
     }   
+    public static double Comprobar(){
+        Scanner leer = new Scanner(System.in);
+        double aux= leer.nextDouble();
+        while (aux<=0) {
+            System.out.println("Error. Ingrese un dato válido: ");
+            aux=leer.nextInt();
+        }
+        return aux;
+    }
 }
